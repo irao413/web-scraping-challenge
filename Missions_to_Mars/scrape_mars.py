@@ -2,14 +2,7 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
-from flask import Flask, render_template
 
-app = Flask(__name__)
-
-@app.route("/scrape")
-def echo():
-    return render_template("index.html", text="Mars Web-Scraping Challenge")
-    
 
 executable_path = {'executable_path': 'C:/Users/astro/Downloads/chromedriver.exe'}
 browser = Browser('chrome', **executable_path)
@@ -70,8 +63,7 @@ def marsFacts():
     mars_facts = mars_df.to_html(index = True, header =True)
     return mars_facts
 
-if __name__ == "__main__":
-    print(scrape)
+
 
 
 
