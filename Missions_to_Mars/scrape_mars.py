@@ -19,10 +19,10 @@ def scrape():
     return data
 
 def marsNews():
-    news_url = "https://mars.nasa.gov/news/"
+    url = "https://mars.nasa.gov/news/"
     browser.visit(news_url)
     html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
+    news = BeautifulSoup(html, "html.parser")
     article = soup.find("div", class_='list_text')
     title = article.find("div", class_="content_title").text
     paragraph = article.find("div", class_ ="article_teaser_body").text
@@ -31,11 +31,11 @@ def marsNews():
 
 
 def JPLImage():
-    image_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
+    url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(image_url)
     html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
-    image = soup.find("img", class_="thumb")["src"]
+    JPL = BeautifulSoup(html, "html.parser")
+    image = JPL.find("img", class_="thumb")["src"]
     featured_image_url = "https://www.jpl.nasa.gov" + image
     return featured_image_url
 
@@ -45,8 +45,8 @@ def TwitterWeather():
     url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(url)
     html = browser.html
-    weather_soup = BeautifulSoup(html, "html.parser")
-    mars_weather_tweet = weather_soup.find("div", 
+    weather_tweet = BeautifulSoup(html, "html.parser")
+    mars_weather_tweet = weather_tweet.find("div", 
                                        attrs={
                                            "class": "tweet", 
                                             "data-name": "Mars Weather"
